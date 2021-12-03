@@ -1,0 +1,185 @@
+a:hover{
+    text-decoration: none;
+}
+.list-group-item {
+    color: #6E7191;
+    background: #FFFFFF;
+    cursor: pointer;
+}
+.list-group-item:hover {
+    color: #012169;
+    box-shadow: 0px 6px 8px #888888;
+}
+.my-button {
+    background: #012169;
+    color: #F7F7FC;
+    font-size: 1.6rem;
+}
+.my-button:hover {
+    box-shadow: 0px 6px 8px #888888;
+}
+.dropdown-menu {
+    min-width: 0px !important;
+    font-size: 1.6rem;
+}
+#head-modal {
+    border-bottom: 0.73px solid #D9DBE9;
+}
+.modal-heading {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.75px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: var(--iinvest--black001);
+}
+.relative-class {
+    position: relative;
+}
+.input-details {
+    background: #EFF0F7;
+    border-radius: 12px;
+    height: 60px;
+    width: 470px;
+}
+.floating-label {
+    position: relative;
+    pointer-events: none;
+    left: 15px;
+    top: -43px;
+    transition: 0.2s ease all;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.4rem;
+    font-size: 14px;
+    color: #6E7191;
+}
+  
+input:focus ~ .floating-label, #text-area:focus ~ .floating-label, select:focus ~ .floating-label,
+input:not(:focus):valid ~ .floating-label, select:disabled ~ .floating-label,
+#text-area:not(:focus):valid ~ .floating-label, select:not(:focus):valid ~ .floating-label{
+    top: -68px;
+    /* bottom: 10px; */
+    left: 12px;
+    font-size: 1rem;
+    font-size: 10px;
+    opacity: 1;
+    /* background-color: white; */
+}
+
+.input-details {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.75px;
+    color: #A0A3BD;
+}
+.modal-btn {
+    height: 52px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.75px;
+    color: #F7F7FC;
+    background: #012169;
+    border-radius: 20px;
+    width: 470px;
+}
+.select-custom {
+    text-indent: 10px;
+}
+.edit {
+    position: absolute;
+    right: 45px;
+}
+.delete {
+    position: absolute;
+    right: 10px;
+}
+.delete-msg {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 3.4rem;
+    text-align: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #4E4B66;
+    height: 25px;
+}
+#delete-img {
+    width: 50px;
+}
+.cancel-modal {
+    border: 2px solid #14142B;
+    box-sizing: border-box;
+    border-radius: 1.8rem;
+    height: 5.2rem;
+    width: 18.4rem;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.75px;
+    color: #14142B;
+}
+.confirm-delete {
+    background: #012169;
+    border-radius: 2rem;
+    width: 22.4rem;
+    height: 5.2rem;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.75px;
+    color: #F7F7FC;
+}
+.upload-box {
+    width: 460px;
+    height: 88px;
+    left: 336px;
+    top: 244px;
+    border: 1px solid #D9DBE9;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+.paragraph-2 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.4rem;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #4E4B66;
+}
+.btn-browse {
+    width: 100px;
+    height: 37px;
+    background: #FFEFEB;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.4rem;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #FB4E4E;
+    cursor: pointer;
+}

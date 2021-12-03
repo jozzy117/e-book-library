@@ -1,0 +1,85 @@
+<div id="cat-book" class="mt-2">
+    <div id="cat-heading" class="d-flex flex-row">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p class="cat-title">Health & Medicine</p>
+        </div>
+    </div>
+    <div class="card-group mx-3">
+        <a [routerLink]="'/book/'+book.id" *ngFor="let book of books">
+            <div class="card mt-3 mr-3">
+                <img [src]="book.imageUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title d-flex justify-content-center">{{book.name}}</h5>
+                  <!-- <p class="card-text">This is a wider card</p> -->
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated {{book.updated}}</small>
+                  <span class="edit ml-4" type="button" data-toggle="modal"
+                      data-target="#edit-book">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M5.81366 14.6899L13.1357 5.2212C13.5336 4.71059 13.6751 4.12025 13.5424 3.51916C13.4275 2.97271 13.0914 2.45314 12.5874 2.05899L11.3582 1.08255C10.2882 0.231533 8.96177 0.321114 8.20127 1.29755L7.37887 2.36446C7.27276 2.49793 7.29929 2.69501 7.43193 2.80251C7.43193 2.80251 9.51003 4.46872 9.55424 4.50455C9.69573 4.63892 9.80185 4.81808 9.82838 5.03308C9.87259 5.45411 9.58077 5.84827 9.14747 5.90201C8.94408 5.92889 8.74953 5.86618 8.60805 5.74973L6.42383 4.01185C6.31771 3.93213 6.15854 3.94915 6.07011 4.05664L0.879282 10.7752C0.543249 11.1963 0.42829 11.7427 0.543249 12.2712L1.20647 15.1468C1.24184 15.2991 1.37449 15.4066 1.53366 15.4066L4.45185 15.3707C4.98242 15.3618 5.47763 15.1199 5.81366 14.6899ZM9.89973 13.7944H14.6581C15.1224 13.7944 15.5 14.1769 15.5 14.6472C15.5 15.1184 15.1224 15.5 14.6581 15.5H9.89973C9.43547 15.5 9.05788 15.1184 9.05788 14.6472C9.05788 14.1769 9.43547 13.7944 9.89973 13.7944Z" fill="#012169"/>
+                      </svg>                
+                  </span>
+                  <span class="delete ml-4" type="button" data-toggle="modal"
+                      data-target="#delete-modal">
+                      <img src="assets/images/Delete.svg" alt="edit">
+                  </span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="edit-book" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="head-modal" class="flex-column mt-4 mx-2">
+                <div class="col d-flex justify-content-center">
+                    <p class="modal-heading">Edit Book</p>
+                </div>
+            </div>
+            <div class="form-group d-flex mx-2 mt-5">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="relative-class">
+                        <input type="text" class="form-control input-details" [(ngModel)]="addBookName" required />
+                        <span class="floating-label">Name</span>
+                    </div>
+                    <div class="mt-2 relative-class">
+                        <select class="form-select input-details select-custom" [(ngModel)]="selectedCategoryId" required>
+                            <option disabled>Select Category</option>
+                            <option [ngValue]="category.id" *ngFor="let category of categories"> {{category.name}}</option>
+                        </select>
+                        <span class="floating-label">Select Category</span>
+                    </div>
+                    <div class="upload-box">
+                        <div class="d-flex flex-row mt-4">
+                            <div class="col d-flex justify-content-start mt-3">
+                                <input #fileUpload type="file" name="bookImage" hidden
+                                    accept=".png, .jpeg, .jpg, .svg" (change)="imageHandler($event)" 
+                                />
+                                <a (click)="fileUpload.click()" class="btn-browse">Browse</a>
+                            </div>
+                            <div class="col d-flex justify-content-end mt-3">
+                                <label class="paragraph-2 mt-2">{{bookImageName || "Upload Book Image."}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 mb-5">
+                        <button type="submit" class="btn modal-btn" type="button" data-toggle="modal"
+                            data-target="#withdraw-confirm" data-dismiss="modal">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

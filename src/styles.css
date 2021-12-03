@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem !important;
+}
+
+.container-fluid {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    background: #F8F8F8;
+}
+
+#container {
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.modal-content {
+    border-radius: 1.6rem !important;
+    z-index: 99;
+}
+
+.close {
+    font-size: 3rem !important;
+}

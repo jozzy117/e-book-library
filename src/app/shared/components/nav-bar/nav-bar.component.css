@@ -1,0 +1,21 @@
+#logo {
+    max-width: 100px;
+}
+.search-btn {
+    background: #012169;
+    color: #F7F7FC;
+    font-size: 1.6rem;
+}
+.input-search {
+    font-size: 1.6rem;
+}
+.navbar, .container-fluid {
+    background: #FFFFFF;
+}
+.navbar {
+    border: 1px solid #D9DBE9;
+    position: fixed;
+    z-index: 5;
+    width: 100vw;
+    height: 76px;
+}

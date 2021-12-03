@@ -1,0 +1,183 @@
+<div class="list-group mx-3 mt-1">
+    <a class="list-group-item mt-2" [routerLink]="'/category/'+category.id" *ngFor="let category of categories">{{category.name}} 
+        <span class="edit ml-5" type="button" data-toggle="modal"
+            data-target="#edit-modal">
+            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.2711 7.08647L6.54835 19.0599C5.99071 19.663 5.2578 20 4.49303 20H0.748838C0.541713 20 0.35052 19.9113 0.207125 19.7517C0.0637309 19.592 0 19.3792 0 19.1486L0.0955964 14.9446C0.111529 14.1109 0.414251 13.3304 0.940031 12.745L8.53994 4.28381C8.6674 4.14191 8.89046 4.14191 9.01792 4.28381L11.6835 7.2337C11.8587 7.42705 12.1137 7.55299 12.3845 7.55299C12.974 7.55299 13.4361 7.02084 13.4361 6.38226C13.4361 6.06297 13.3245 5.77916 13.1493 5.5663C13.1015 5.49534 10.5634 2.68736 10.5634 2.68736C10.4041 2.50998 10.4041 2.20843 10.5634 2.03104L11.6309 0.824834C12.6187 -0.274945 14.212 -0.274945 15.1998 0.824834L17.2711 3.13082C18.243 4.21286 18.243 5.9867 17.2711 7.08647Z" fill="#012169"/>
+            </svg>  
+        </span>
+        <span class="delete ml-4" type="button" data-toggle="modal"
+            data-target="#delete-modal">
+            <img src="assets/images/Delete.svg" alt="edit">
+        </span>
+    </a>
+</div>
+<div class="d-flex flex-column align-items-center mt-5">
+    <div class="dropdown">
+        <button class="btn my-button dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Add New
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>  
+                <a class="dropdown-item" type="button" data-toggle="modal"
+                    data-target="#category-modal">Category
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" type="button" data-toggle="modal"
+                    data-target="#book-modal">Book
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modals -->
+<div class="modal fade" id="book-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="head-modal" class="flex-column mt-4 mx-2">
+                <div class="col d-flex justify-content-center">
+                    <p class="modal-heading">New Book</p>
+                </div>
+            </div>
+            <div class="form-group d-flex mx-2 mt-5">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="relative-class">
+                        <input type="text" class="form-control input-details" [(ngModel)]="addBookName" required />
+                        <span class="floating-label">Name</span>
+                    </div>
+                    <div class="mt-2 relative-class">
+                        <select class="form-select input-details select-custom" [(ngModel)]="selectedCategoryId" required>
+                            <option disabled>Select Category</option>
+                            <option [ngValue]="category.id" *ngFor="let category of categories">{{category.name}}</option>
+                        </select>
+                        <span class="floating-label">Select Category</span>
+                    </div> 
+                    <div class="upload-box">
+                        <div class="d-flex flex-row mt-4">
+                            <div class="col d-flex justify-content-start mt-3">
+                                <input #fileUpload type="file" name="bookImage" hidden
+                                    accept=".png, .jpeg, .jpg, .svg" (change)="imageHandler($event)" 
+                                />
+                                <a (click)="fileUpload.click()" class="btn-browse">Browse</a>
+                            </div>
+                            <div class="col d-flex justify-content-end mt-3">
+                                <label class="paragraph-2 mt-2">{{bookImageName || "Upload Book Image."}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 mb-5">
+                        <button type="submit" class="btn modal-btn" (click)="newBook()">
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="category-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="head-modal" class="flex-column mt-4 mx-2">
+                <div class="col d-flex justify-content-center">
+                    <p class="modal-heading">New Category</p>
+                </div>
+            </div>
+            <div class="form-group d-flex mx-2 mt-5">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="relative-class">
+                        <input type="text" class="form-control input-details" name="categoryName" [(ngModel)]="addCategoryName" required />
+                        <span class="floating-label">Name</span>
+                    </div>
+                    <div class="mt-3 mb-5">
+                        <button type="submit" class="btn modal-btn" (click)="newCategory()">
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="head-modal" class="flex-column mt-4 mx-2">
+                <div class="col d-flex justify-content-center">
+                    <p class="modal-heading">Edit Category</p>
+                </div>
+            </div>
+            <div class="form-group d-flex mx-2 mt-5">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="relative-class">
+                        <input type="text" class="form-control input-details" [(ngModel)]="renameCategory" required />
+                        <span class="floating-label">Name</span>
+                    </div>
+                    <!-- <div class="relative-class mt-2">
+                        <input type="text" class="form-control input-details" required />
+                        <span class="floating-label">Rename</span>
+                    </div> -->
+                    <div class="mt-3 mb-5">
+                        <button type="submit" class="btn modal-btn" (click)="editCategory()">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="d-flex flex-row justify-content-center mt-5">
+                <img id="delete-img" src="assets/images/Delete.svg" type="">
+            </div>
+            <div class="d-flex flex-column align-items-center mt-5">
+                <p class="delete-msg">Do you want to delete ?</p>
+            </div>
+            <div id="confirm-div" class="d-flex flex-row justify-content-center mt-4 mb-5">
+                <div class="mt-5 mb-4">
+                    <button class="btn cancel-modal mr-3" data-dismiss="modal">
+                        << Go back
+                    </button>
+                </div>
+                <div class="mt-5 mb-4">
+                    <button class="btn confirm-delete" (click)="deleteCategory()">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
