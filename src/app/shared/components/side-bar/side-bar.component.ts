@@ -3,7 +3,7 @@ import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
 import { Book } from '../../models/book.model';
 import { BookService } from '../../services/book.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
@@ -27,7 +27,6 @@ export class SideBarComponent implements OnInit {
   constructor(private _categoryService: CategoryService,
               private actRoute: ActivatedRoute,
               private _bookService: BookService,
-              private router: Router,
               private spinner: NgxSpinnerService,
               private toastr: ToastrService) { }
 
@@ -122,6 +121,7 @@ export class SideBarComponent implements OnInit {
       this.isFavourite = 'false';
     }
   }
+
   checkBook(event: any) {
     if(event.target.checked) {
       this.isBookFavourite = 'true';

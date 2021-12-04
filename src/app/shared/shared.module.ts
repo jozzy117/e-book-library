@@ -8,8 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule} from "ngx-spinner";
 
-
-
 @NgModule({
   declarations: [
     NavBarComponent,
