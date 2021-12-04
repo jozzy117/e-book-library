@@ -1,9 +1,8 @@
 export class Book {
     id?: string;
-    categoryId!: string;
     name!: string;
-    image?: string;
-    description?: string;
-    createdOn?: string;
-    updatedOn?: string;
+    isFavorite?: string
+    categoryId?: string; //if books are to be connected to its category   
+    image?: string; //if books have images
+   
 }

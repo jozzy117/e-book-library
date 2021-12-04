@@ -16,76 +16,31 @@ export class BookService {
     })
   }
 
-  allBooksUrl = env + "books";
-  bookByCategoryUrl = env + "books?categoryId=";
-  bookByFavouriteUrl = env + "favouriteBooks";
-  addBookUrl = env + "addBook?categoryId=";
-  editBookUrl = env + "editBook?bookId=";
-  deleteBookUrl = env + "deleteBook?bookId=";
+  allBooksUrl = env.apiUrl + "books";
+  addBookUrl = env.apiUrl + "books";
+  editBookUrl = env.apiUrl ;
+  deleteBookUrl = env.apiUrl ;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ) { }
 
-  getBooks(): Observable<Book> {
-    return this.http.get<Book>(this.allBooksUrl)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
+  getBooks(): Observable<any> {
+    return this.http.get(this.allBooksUrl)
+    .pipe(retry(1));
   }
 
-  getBook(categoryId: string): Observable<Book> {
-    return this.http.get<Book>(this.bookByCategoryUrl + categoryId)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
-  }
-
-  getFavourites(): Observable<Book> {
-    return this.http.get<Book>(this.bookByFavouriteUrl)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
-  }
-
-  addBook(categoryId:string, book: object): Observable<Book> {
-    return this.http.post<Book>(this.addBookUrl + categoryId, JSON.stringify(book), this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
+  addBook(book: object): Observable<Book> {
+    return this.http.post<Book>(this.addBookUrl, JSON.stringify(book), this.httpOptions)
+    .pipe(retry(1));
   }
 
   editBook(bookId:string, book:object): Observable<Book> {
     return this.http.put<Book>(this.editBookUrl + bookId, JSON.stringify(book), this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
+    .pipe(retry(1));
   }
   
   deleteBook(bookId:string): Observable<Book> {
     return this.http.delete<Book>(this.deleteBookUrl + bookId, this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
+    .pipe(retry(1));
   }
-
-
-   // Error handling 
-   handleError(error: any) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
- }
 
 }

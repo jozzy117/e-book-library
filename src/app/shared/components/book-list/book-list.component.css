@@ -22,10 +22,20 @@
 .cat-title {
     height: 15px;
 }
+.card-group {
+    padding-top: 20px;
+    padding-bottom: 24px;
+}
 .card {
-    max-width: 150px;
-    max-height: 330px;
+    width: 150px;
+    height: 200px;
     margin-right: 20px;
+}
+.card-title {
+    color: #012169;
+}
+.card-footer{
+    height: 40px;
 }
 .card:hover {
     box-shadow: 0px 6px 8px #888888;
@@ -152,4 +162,52 @@ input:not(:focus):valid ~ .floating-label, select:disabled ~ .floating-label,
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: #FB4E4E;
     cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
+}
+.delete {
+    position: absolute;
+    right: 10px;
+}
+.delete-msg {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 3.4rem;
+    text-align: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #4E4B66;
+    height: 25px;
+}
+#delete-img {
+    width: 50px;
+}
+.cancel-modal {
+    border: 2px solid #14142B;
+    box-sizing: border-box;
+    border-radius: 1.8rem;
+    height: 5.2rem;
+    width: 18.4rem;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.75px;
+    color: #14142B;
+}
+.confirm-delete {
+    background: #012169;
+    border-radius: 2rem;
+    width: 22.4rem;
+    height: 5.2rem;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.75px;
+    color: #F7F7FC;
 }

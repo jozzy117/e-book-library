@@ -77,7 +77,7 @@ input:not(:focus):valid ~ .floating-label, select:disabled ~ .floating-label,
     font-size: 1.6rem;
     line-height: 2.8rem;
     letter-spacing: 0.75px;
-    color: #A0A3BD;
+    /* color: #A0A3BD; */
 }
 .modal-btn {
     height: 52px;
@@ -182,4 +182,11 @@ input:not(:focus):valid ~ .floating-label, select:disabled ~ .floating-label,
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: #FB4E4E;
     cursor: pointer;
+}
+#flexCheckDefault, #bookCheckDefault {
+    margin-top: 7px;
+    margin-left: -2.5rem !important;
+}
+.form-check {
+    width: 430px;
 }

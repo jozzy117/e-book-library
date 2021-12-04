@@ -6,6 +6,8 @@ import { BookListComponent } from './components/book-list/book-list.component';
 import { FavouriteBooksComponent } from './components/favourite-books/favourite-books.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { NgxSpinnerModule} from "ngx-spinner";
+
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    NgxSpinnerModule,
   ],
   exports: [
     NavBarComponent,

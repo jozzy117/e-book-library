@@ -22,10 +22,20 @@
 .fav-title {
     height: 15px;
 }
+.card-group {
+    padding-top: 20px;
+    padding-bottom: 24px;
+}
 .card {
-    max-width: 150px;
-    max-height: 330px;
+    width: 150px;
+    height: 200px;
     margin-right: 20px;
+}
+.card-title {
+    color: #012169;
+}
+.card-footer{
+    height: 40px;
 }
 .card:hover {
     box-shadow: 0px 6px 8px #888888;

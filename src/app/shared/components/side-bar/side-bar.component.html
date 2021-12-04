@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div class="list-group mx-3 mt-1">
     <a class="list-group-item mt-2" [routerLink]="'/category/'+category.id" *ngFor="let category of categories">{{category.name}} 
         <span class="edit ml-5" type="button" data-toggle="modal"
@@ -12,8 +13,8 @@
         </span>
     </a>
 </div>
-<div class="d-flex flex-column align-items-center mt-5">
-    <div class="dropdown">
+<div class="d-flex flex-column align-items-center mt-5 mb-5">
+    <div class="dropdown mb-5">
         <button class="btn my-button dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Add New
         </button>
@@ -52,6 +53,12 @@
                     <div class="relative-class">
                         <input type="text" class="form-control input-details" [(ngModel)]="addBookName" required />
                         <span class="floating-label">Name</span>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="bookCheckDefault" (change)="checkBook($event)">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Favourite
+                        </label>
                     </div>
                     <div class="mt-2 relative-class">
                         <select class="form-select input-details select-custom" [(ngModel)]="selectedCategoryId" required>
@@ -103,6 +110,12 @@
                     <div class="relative-class">
                         <input type="text" class="form-control input-details" name="categoryName" [(ngModel)]="addCategoryName" required />
                         <span class="floating-label">Name</span>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="checkBox($event)">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Favourite
+                        </label>
                     </div>
                     <div class="mt-3 mb-5">
                         <button type="submit" class="btn modal-btn" (click)="newCategory()">
@@ -163,7 +176,7 @@
                 <img id="delete-img" src="assets/images/Delete.svg" type="">
             </div>
             <div class="d-flex flex-column align-items-center mt-5">
-                <p class="delete-msg">Do you want to delete ?</p>
+                <p class="delete-msg">Do you want to delete Category ?</p>
             </div>
             <div id="confirm-div" class="d-flex flex-row justify-content-center mt-4 mb-5">
                 <div class="mt-5 mb-4">
