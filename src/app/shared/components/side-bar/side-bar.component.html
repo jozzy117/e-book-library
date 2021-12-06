@@ -148,10 +148,12 @@
                         <input type="text" class="form-control input-details" [(ngModel)]="renameCategory" required />
                         <span class="floating-label">Name</span>
                     </div>
-                    <!-- <div class="relative-class mt-2">
-                        <input type="text" class="form-control input-details" required />
-                        <span class="floating-label">Rename</span>
-                    </div> -->
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" (change)="checkBox($event)">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Favourite
+                        </label>
+                    </div>
                     <div class="mt-3 mb-5">
                         <button type="submit" class="btn modal-btn" (click)="editCategory()">
                             Save

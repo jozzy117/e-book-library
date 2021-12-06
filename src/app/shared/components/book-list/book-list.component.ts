@@ -11,12 +11,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  id:any = this.actRoute.snapshot.paramMap.get("id");
+  id:any;
   books: any = [];
   selectedCategoryId: string = '';
   addBookName: string = '';
   bookImage: string = '';
   bookImageName: string = '';
+  isFavourite: Boolean = false;
 
   categories: any = [];
 
@@ -26,6 +27,9 @@ export class BookListComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.actRoute.paramMap.subscribe(params => {
+      this.id = params.get("id");
+    });
     this.loadBooks();
   }
 
@@ -44,12 +48,34 @@ export class BookListComponent implements OnInit {
   }
 
   editBook() {
-    const bookObj: Book = {
-      name: this.addBookName,
-    }
-    this.spinner.show();
-    this._bookService.editBook(this.id, bookObj).subscribe(data => {
+    if (this.addBookName == '') {
+      this.toastr.error("Invalid Book name", "Input Error!");
+    }else {
+      const bookObj: Book = {
+        name: this.addBookName,
+        isFavorite: this.isFavourite
+      }
+      this.spinner.show();
+      this._bookService.editBook(this.id, bookObj).subscribe(data => {
+          this.toastr.success("Successful", "Edit Book");
+          this.spinner.hide();
+          location.replace("/");
+      },error => {
+        this.toastr.error(
+          error.error.msg,
+          error.status
+        );
         this.spinner.hide();
+      });
+    }
+  }
+
+  deleteBook() {
+    this.spinner.show();
+    this._bookService.deleteBook(this.id).subscribe(data => {
+      this.toastr.success("Successful", "Delete Book");
+      this.spinner.hide();
+      location.replace("/");
     },error => {
       this.toastr.error(
         error.error.msg,
@@ -59,17 +85,12 @@ export class BookListComponent implements OnInit {
     });
   }
 
-  deleteBook() {
-    this.spinner.show();
-    this._bookService.deleteBook(this.id).subscribe(data => {
-      this.spinner.hide();
-    },error => {
-      this.toastr.error(
-        error.error.msg,
-        error.status
-      );
-      this.spinner.hide();
-    });
+  checkBox(event: any) {
+    if(event.target.checked) {
+      this.isFavourite = true;
+    }else {
+      this.isFavourite = false;
+    }
   }
 
   imageHandler(event:any) {
@@ -81,7 +102,7 @@ export class BookListComponent implements OnInit {
       this.bookImage = reader.result as string;
     }; 
     reader.onerror = (err) => {
-      window.alert("Invalid file selected");
+      this.toastr.error("Invalid file selected");
     };
   }
 

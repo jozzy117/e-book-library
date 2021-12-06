@@ -20,9 +20,9 @@ export class SideBarComponent implements OnInit {
   addBookName: string = '';
   bookImage: string = '';
   bookImageName: string = '';
-  isFavourite: string = 'false';
-  isBookFavourite: string = 'false';
-  id:any = this.actRoute.snapshot.paramMap.get("id");
+  isFavourite: Boolean = false;
+  isBookFavourite: Boolean = false;
+  id:any;
 
   constructor(private _categoryService: CategoryService,
               private actRoute: ActivatedRoute,
@@ -31,6 +31,9 @@ export class SideBarComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.actRoute.paramMap.subscribe(params => {
+      this.id = params.get("id");
+    });
     this.loadCategories();
   }
 
@@ -50,61 +53,80 @@ export class SideBarComponent implements OnInit {
   }
 
   newCategory() {
-    const categoryObj: Category = {
-      name: this.addCategoryName,
-      isFavorite: this.isFavourite
-    }
-    this.spinner.show();
-    this._categoryService.addCategory(categoryObj).subscribe(data => {
-        location.reload();
+    if (this.addCategoryName == '') {
+      this.toastr.error("Invalid Category name", "Input Error!");
+    }else{
+      const categoryObj: Category = {
+        name: this.addCategoryName,
+        isFavorite: this.isFavourite
+      }
+      this.spinner.show();
+      this._categoryService.addCategory(categoryObj).subscribe(data => {
+          this.toastr.success("Successful", "New Category");
+          location.replace("/");
+          this.spinner.hide();
+      },error => {
+        this.toastr.error(
+          error.error.msg,
+          error.status
+        );
         this.spinner.hide();
-    },error => {
-      this.toastr.error(
-        error.error.msg,
-        error.status
-      );
-      this.spinner.hide();
-    });
+      });
+    }
   }
 
   newBook() {
-    const bookObj: Book = {
-      name: this.addBookName,
-      isFavorite: this.isBookFavourite
-    }
-    this.spinner.show();
-    this._bookService.addBook(bookObj).subscribe(data => {
-        location.reload();
+    if (this.addBookName == '') {
+      this.toastr.error("Invalid Book name", "Input Error!");
+    }else {
+      const bookObj: Book = {
+        name: this.addBookName,
+        isFavorite: this.isBookFavourite
+      }
+      this.spinner.show();
+      this._bookService.addBook(bookObj).subscribe(data => {
+          this.toastr.success("Successful", "New Book");
+          location.replace("/");
+          this.spinner.hide();
+      },error => {
+        this.toastr.error(
+          error.error.msg,
+          error.status
+        );
         this.spinner.hide();
-    },error => {
-      this.toastr.error(
-        error.error.msg,
-        error.status
-      );
-      this.spinner.hide();
-    });
+      });
+    }
   }
 
   editCategory() {
-    const categoryObj: Category = {
-      name: this.renameCategory
-    }
-    this.spinner.show();
-    this._categoryService.editCategory(this.id, categoryObj).subscribe(data => {
+    if (this.renameCategory == '') {
+      this.toastr.error("Invalid Category name", "Input Error!");
+    }else{
+      const categoryObj: Category = {
+        name: this.renameCategory,
+        isFavorite: this.isFavourite
+      }
+      this.spinner.show();
+      this._categoryService.editCategory(this.id, categoryObj).subscribe(data => {
+          this.toastr.success("Successful", "Edit Category");
+          this.spinner.hide();
+          location.replace("/");
+      },error => {
+        this.toastr.error(
+          error.error.msg,
+          error.status
+        );
         this.spinner.hide();
-    },error => {
-      this.toastr.error(
-        error.error.msg,
-        error.status
-      );
-      this.spinner.hide();
-    });
+      });
+    }
   }
 
   deleteCategory() {
     this.spinner.show();
     this._categoryService.deleteCategory(this.id).subscribe(data => {
+      this.toastr.success("Successful", "Delete Category");
       this.spinner.hide();
+      location.replace("/");
     },error => {
       this.toastr.error(
         error.error.msg,
@@ -116,17 +138,17 @@ export class SideBarComponent implements OnInit {
 
   checkBox(event: any) {
     if(event.target.checked) {
-      this.isFavourite = 'true';
+      this.isFavourite = true;
     }else {
-      this.isFavourite = 'false';
+      this.isFavourite = false;
     }
   }
 
   checkBook(event: any) {
     if(event.target.checked) {
-      this.isBookFavourite = 'true';
+      this.isBookFavourite = true;
     }else {
-      this.isBookFavourite = 'false';
+      this.isBookFavourite = false;
     }
   }
 
@@ -139,7 +161,7 @@ export class SideBarComponent implements OnInit {
       this.bookImage = reader.result as string;
     }; 
     reader.onerror = (err) => {
-      window.alert("Invalid file selected");
+      this.toastr.error("Invalid file selected");
     };
   }
 

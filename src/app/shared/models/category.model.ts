@@ -1,5 +1,5 @@
 export class Category {
     id?: string;
     name?: string;
-    isFavorite?: string
+    isFavorite?: Boolean
 }

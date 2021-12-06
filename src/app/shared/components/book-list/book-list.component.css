@@ -211,3 +211,10 @@ a:hover {
     letter-spacing: 0.75px;
     color: #F7F7FC;
 }
+#flexCheckDefault, #bookCheckDefault {
+    margin-top: 7px;
+    margin-left: -2.5rem !important;
+}
+.form-check {
+    width: 430px;
+}

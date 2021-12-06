@@ -17,8 +17,8 @@ export class BookService {
 
   allBooksUrl = env.apiUrl + "books";
   addBookUrl = env.apiUrl + "books";
-  editBookUrl = env.apiUrl ;
-  deleteBookUrl = env.apiUrl ;
+  editBookUrl = env.apiUrl + "books/";
+  deleteBookUrl = env.apiUrl + "books/";
 
   constructor(private http: HttpClient ) { }
 

@@ -17,8 +17,8 @@ export class CategoryService {
 
   allCategoryUrl = env.apiUrl + "categories";
   addCategoryUrl = env.apiUrl + "categories";
-  editCategoryUrl = env.apiUrl;
-  deleteCategotyUrl = env.apiUrl;
+  editCategoryUrl = env.apiUrl + "categories/";
+  deleteCategotyUrl = env.apiUrl + "categories/";
 
   constructor(private http: HttpClient ) { }
 
